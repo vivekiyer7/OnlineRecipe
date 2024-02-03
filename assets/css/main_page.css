@@ -139,3 +139,43 @@ div.relative {
     }
 
 /* Recipe section styles End */
+
+/* Try Something New section styles Start */
+
+/*try-something-new button styles . Put button in Center of Screen*/
+.randonrecipeheader {
+    margin: 0;
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #1b1b1c;
+    font-style: italic;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.todayrandom {
+    background-color: antiquewhite;
+    padding: 20px;
+    margin: 20px 0;
+    border: 2px solid #373737;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+
+#randonrecipedata {
+    margin: 0;
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #1b1b1c;
+    font-style: italic;
+}
+
+
+#randonrecipeimage img{
+    width: 100%;
+    height: auto;
+    display: block;
+    margin-bottom: 25px;
+    border: 2px solid #3c3c3c;
+    border-radius: 5px;
+    box-sizing: border-box;
+  }

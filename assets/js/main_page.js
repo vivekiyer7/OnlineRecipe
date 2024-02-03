@@ -11,7 +11,6 @@ document.addEventListener("DOMContentLoaded", function () {
     //if time is from afternoon 2 to night 12 then display the dinner recipe
 
     var time = new Date().getHours();
-    console.log(time);
     var recipeType = "";
     if (time >= 0 && time < 10) {
         recipeType = "Breakfast";
@@ -20,7 +19,6 @@ document.addEventListener("DOMContentLoaded", function () {
     } else {
         recipeType = "Dinner";
     }
-    console.log(recipeType);
 
     //Display the time on the main page
     var todaymenutimeEL = $("#todaymenutime");
@@ -36,7 +34,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 recipeid.push(meallist[i].id);
             }
         }
-        console.log(recipeid);
 
         //do a math random to get the 4 recipe id from the list which is unique
         var randomrecipeid = [];
@@ -48,31 +45,21 @@ document.addEventListener("DOMContentLoaded", function () {
                 randomrecipeid.push(recipeid[temp]);
             }
         }
-        console.log(randomrecipeid);
-        //after that run the API to details and then only show few details as each card.
-        //my API Example is https://api.edamam.com/api/recipes/v2/68b1dd6da9193b21372bee7a2bd19941?type=public&app_id=7bfc5058&app_key=72f32efdcea683bd1f0a63347aefc9a7
-        //https://api.edamam.com/api/recipes/v2/68b1dd6da9193b21372bee7a2bd19941?type=public&app_id=7bfc5058&app_key=72f32efdcea683bd1f0a63347aefc9a7
 
         for (let i = 0; i < randomrecipeid.length; i++) {
             var recipeapi = "";
             recipeapi = "https://api.edamam.com/api/recipes/v2/" + randomrecipeid[i] + "?type=public&app_id=" + app_id + "&app_key=" + app_key;
-            console.log(recipeapi);
             fetch(recipeapi)
                 .then(function (response) {
                     return response.json();
                 })
                 .then(function (data) {
-                    console.log(data);
                     imagelink = data.recipe.image;
                     dishname = data.recipe.label;
                     calories = data.recipe.calories;
                     //round off the calories 2 decimal places
                     calories = Math.round(calories * 100) / 100;
                     cusinetype = data.recipe.cuisineType;
-                    console.log(imagelink);
-                    console.log(dishname);
-                    console.log(calories);
-                    console.log(cusinetype);
                     var recipeEL = $("#recipe" + (i+1) );
                     recipeEL.append("<img src='" + imagelink + "' alt='recipe'>");
                     recipeEL.append("<h4>" + dishname + "</h4>");
@@ -80,11 +67,52 @@ document.addEventListener("DOMContentLoaded", function () {
                     recipeEL.append("<h5>" + "Calories: " + calories + "</h5>");   
                 });
         }
-
     }
-    
 
-
+    //Add the event listner to Try Something New button
+    //This will call the new API to get the new recipe.
+    //Example of API is 
+    function getramdomrecipe(recipeType) {
+        var randomfooddbid = []; 
     
+        for (let i = 0; i < fooddbmeal.length; i++) {
+            tempstr = fooddbmeal[i].strCategory;
+            if (tempstr === recipeType) {    
+                randomfooddbid.push(fooddbmeal[i].idMeal);
+            }
+        }
+        var randomfoodid = [];
+        for (let i = 0; i < 1; i++) {
+            randomfoodid.push(randomfooddbid[Math.floor(Math.random() * randomfooddbid.length)]);
+        }
+        //call the API to get the recipe details
+        var recipeapi = "";
+        recipeapi = "https://www.themealdb.com/api/json/v1/1/lookup.php?i=" + randomfoodid;
+        fetch(recipeapi)
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (data) {
+                imagelink = data.meals[0].strMealThumb;
+                dishname = data.meals[0].strMeal;
+                area = data.meals[0].strArea;
+                var recipeEL = $("#randonrecipedata");
+                recipeEL.empty();
+                recipeEL.append("<h4>" + dishname + "</h4>");
+                recipeEL.append("<h5>" + "Cusine Area/Origin: " + area + "</h5>");
+                var recipeEL = $("#randonrecipeimage");
+                recipeEL.empty();
+                recipeEL.append("<img src='" + imagelink + "' alt='recipe'>");
+            });
+    }
+
+    getramdomrecipe(recipeType);
+    //Add the event listner to Try Something New button
+    //This will call the new API to get the new recipe.
+    var trynewbtn = $("#randonrecipebtn");
+    trynewbtn.click(function () {
+        getramdomrecipe(recipeType);
+    });
+
 });
    
