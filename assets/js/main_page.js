@@ -38,10 +38,15 @@ document.addEventListener("DOMContentLoaded", function () {
         }
         console.log(recipeid);
 
-        //do a math random to get the 4 recipe id from the list
+        //do a math random to get the 4 recipe id from the list which is unique
         var randomrecipeid = [];
         for (let i = 0; i < 4; i++) {
-            randomrecipeid.push(recipeid[Math.floor(Math.random() * recipeid.length)]);
+            temp = Math.floor(Math.random() * recipeid.length);
+            if (randomrecipeid.includes(recipeid[temp])) {
+                i--;
+            } else {
+                randomrecipeid.push(recipeid[temp]);
+            }
         }
         console.log(randomrecipeid);
         //after that run the API to details and then only show few details as each card.
