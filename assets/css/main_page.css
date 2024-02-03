@@ -141,8 +141,6 @@ div.relative {
 /* Recipe section styles End */
 
 /* Try Something New section styles Start */
-
-/*try-something-new button styles . Put button in Center of Screen*/
 .randonrecipeheader {
     margin: 0;
     font-size: 2.5rem;
@@ -178,4 +176,49 @@ div.relative {
     border: 2px solid #3c3c3c;
     border-radius: 5px;
     box-sizing: border-box;
+  }
+/* Try Something New section styles End */
+
+/*Search section styles Start */
+.searchheader {
+    margin: 0;
+    font-size: 2 rem;
+    color: #1b1b1c;
+    font-style: italic;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.SearchSection {
+    background-color: antiquewhite;
+    padding: 20px;
+    margin: 20px 0;
+    border: 2px solid #373737;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+
+#searchoptions {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #1b1b1c;
+    font-style: italic;
+}
+
+.searchdisplaynamesection {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #1b1b1c;
+    font-style: italic;
+    background-color: cadetblue;
+}
+
+.searchdisplayimgsection {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #1b1b1c;
+    font-style: italic;
+    background-color: rgb(145, 160, 95);
   }

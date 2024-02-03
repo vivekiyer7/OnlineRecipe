@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", function () {
     var todaymenutimeEL = $("#todaymenutime");
     todaymenutimeEL.append("<h3>" + recipeType + "</h3>");
 
-    loadtodayrecipe(recipeType);
+    //loadtodayrecipe(recipeType);
 
     function loadtodayrecipe(recipeType) {
         var recipeid = [];
