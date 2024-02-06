@@ -350,7 +350,8 @@ document.addEventListener("DOMContentLoaded", function () {
             mealtype = data.recipe.mealType;
             calories = Math.round(calories * 100) / 100;
 
-            
+            // Clear the table body before adding new content
+            recipeTableBody.innerHTML = "";
             // Display the recipe details in the main page Table
             recipeTableBody.innerHTML += `
                 <tr>
@@ -363,6 +364,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 </tr>
             `;
           } else if (data.hits && data.hits.length > 0) {
+            // Clear the table body before adding new content
+            recipeTableBody.innerHTML = "";
             for (let i = 0; i < Math.min(10, data.hits.length); i++) {
               imagelink = data.hits[i].recipe.image;
               dishname = data.hits[i].recipe.label;
@@ -370,6 +373,7 @@ document.addEventListener("DOMContentLoaded", function () {
               cusinetype = data.hits[i].recipe.cuisineType;
               mealtype = data.hits[i].recipe.mealType;
               calories = Math.round(calories * 100) / 100;
+
 
               // Modify this to append content to the correct element
               recipeTableBody.innerHTML += `
