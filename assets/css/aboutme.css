@@ -1,4 +1,4 @@
-
+/* navbar */
  .navbar-brand {
   font-size: 2.5rem;
 }
@@ -30,7 +30,7 @@ body {
   align-items: center;
   background: #ffffff;
 }
-
+/* expanding cards */
 .cards-wrapper {
   display: flex;
   margin-bottom: 50px;
