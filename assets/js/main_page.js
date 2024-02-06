@@ -1,8 +1,8 @@
 document.addEventListener("DOMContentLoaded", function () {
-  var app_id = "7bfc5058";
-  var app_key = "72f32efdcea683bd1f0a63347aefc9a7";
-  //var app_id = "cfba1ecd";
-  //var app_key = "636950cdd1daaef47a38397170ebda0a";
+  //var app_id = "7bfc5058";
+  //var app_key = "72f32efdcea683bd1f0a63347aefc9a7";
+  var app_id = "cfba1ecd";
+  var app_key = "636950cdd1daaef47a38397170ebda0a";
 
   // Hide SearchDisplaySection when the page loads
   var searchDisplaySection = $("#SearchDisplaySection"); // Corrected ID casing
@@ -119,11 +119,33 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   getramdomrecipe(recipeType);
-  //Add the event listner to Try Something New button
-  //This will call the new API to get the new recipe.
+
   var trynewbtn = $("#randonrecipebtn");
   trynewbtn.click(function () {
     getramdomrecipe(recipeType);
+  });
+
+  //Save button for Random Recipe
+  //Add the event listner to the saved recipe button saverandomrecipebtn
+  var saverdmbtn = $("#saverandomrecipebtn");
+  saverdmbtn.click(function () {
+    var description ="";
+
+    var recipeObj = {
+      id: dishid,
+      dishname: dishname,
+      image: imagelink,
+      calories: calories,
+      cusinetype: cusinetype,
+      mealtype: mealtype,
+      description:description,
+    };
+
+    //Save to Local Storage
+    savedRecipes.push(recipeObj);
+    localStorage.setItem("savedRecipes", JSON.stringify(savedRecipes));
+    alert("Recipe saved successfully");
+
   });
 
   //Search Section
@@ -334,15 +356,14 @@ document.addEventListener("DOMContentLoaded", function () {
     } else {
       // Assuming recipeTableBody is the ID of the table body element
       const recipeTableBody = document.getElementById("recipeTableBody");
-      searchDisplaySection.show(); 
+      searchDisplaySection.show();
       fetch(searchapi)
         .then(function (response) {
           return response.json();
         })
         .then(function (data) {
-          console.log(data);
-
           if (data.recipe) {
+            dishid = data.recipe.uri.split("_")[1];
             imagelink = data.recipe.image;
             dishname = data.recipe.label;
             calories = data.recipe.calories;
@@ -355,18 +376,21 @@ document.addEventListener("DOMContentLoaded", function () {
             // Display the recipe details in the main page Table
             recipeTableBody.innerHTML += `
                 <tr>
+                    <td>${dishid}</td>
                     <td>${dishname}</td>
                     <td>${cusinetype}</td>
                     <td>${mealtype}</td>
                     <td>${calories}</td>
                     <td><img src="${imagelink}" alt="recipe"></td>
                     <td><button class="btn Detailbtn btn-primary">Details</button></td>
+                    <td><button class="btn Savebtn btn-primary">Save</button></td>
                 </tr>
             `;
           } else if (data.hits && data.hits.length > 0) {
             // Clear the table body before adding new content
             recipeTableBody.innerHTML = "";
             for (let i = 0; i < Math.min(10, data.hits.length); i++) {
+              dishid = data.hits[i].recipe.uri.split("_")[1];
               imagelink = data.hits[i].recipe.image;
               dishname = data.hits[i].recipe.label;
               calories = data.hits[i].recipe.calories;
@@ -374,27 +398,107 @@ document.addEventListener("DOMContentLoaded", function () {
               mealtype = data.hits[i].recipe.mealType;
               calories = Math.round(calories * 100) / 100;
 
-
               // Modify this to append content to the correct element
               recipeTableBody.innerHTML += `
-                    <tr>
-                        <td>${dishname}</td>
-                        <td>${cusinetype}</td>
-                        <td>${mealtype}</td>
-                        <td>${calories}</td>
-                        <td><img src="${imagelink}" alt="recipe"></td>
-                        <td><button class="btn Detailbtn btn-primary">Details</button></td>
-                    </tr>`;
+              <tr>
+              <td>${dishid}</td>
+              <td>${dishname}</td>
+              <td>${cusinetype}</td>
+              <td>${mealtype}</td>
+              <td>${calories}</td>
+              <td><img src="${imagelink}" alt="recipe"></td>
+              <td><button class="btn Detailbtn btn-primary">Details</button></td>
+              <td><button class="btn Savebtn btn-primary">Save</button></td>
+          </tr>`;
             }
           }
         });
-
-      // Create Event listener for the Detailbtn button
-      document.addEventListener("click", function (e) {
-        if (e.target.classList.contains("Detailbtn")) {
-          alert("Details button clicked");
-        }
-      });
     }
   });
+
+  document.addEventListener("click", function (e) {
+    if (e.target.classList.contains("Detailbtn")) {
+      fromapi = "edmamapi";
+      handleDetailButtonClick(e, fromapi);
+    }
+  });
+
+  function handleDetailButtonClick(e, from_api) {
+
+    var dishid = e.target
+    .closest("tr")
+    .querySelector("td:first-child").textContent;
+
+    var recipeid = dishid;
+    var searchapifrom = from_api;
+
+    if (recipeid && searchapifrom) {
+      var detailsObj = {
+        id: recipeid,
+        fromapi: searchapifrom,
+      };
+
+      localStorage.setItem("Check_Details", JSON.stringify(detailsObj));
+      setTimeout(function () {
+        window.location.href = "./assets/html/details.html";
+      }, 2000);
+    } else {
+      console.error("Recipe ID or Search API is missing.");
+    }
+  }
+
+  document.addEventListener("click", function (e) {
+    if (e.target.classList.contains("Savebtn")) {
+      //Save the recipe in the local storage
+      handleSaveButtonClick(e);
+    }
+  });
+
+  function handleSaveButtonClick(e) {
+    var dishname = e.target
+      .closest("tr")
+      .querySelector("td:nth-child(2)").textContent;
+    var dishid = e.target
+      .closest("tr")
+      .querySelector("td:first-child").textContent;
+    var imagelink = e.target
+      .closest("tr")
+      .querySelector("td:nth-child(6) img").src;
+    var calories = e.target
+      .closest("tr")
+      .querySelector("td:nth-child(5)").textContent;
+    var cusinetype = e.target
+      .closest("tr")
+      .querySelector("td:nth-child(3)").textContent;
+    var mealtype = e.target
+      .closest("tr")
+      .querySelector("td:nth-child(4)").textContent;
+
+    //If the recipe is already saved then dont save it again
+    var savedRecipes = JSON.parse(localStorage.getItem("savedRecipes")) || [];
+    for (let i = 0; i < savedRecipes.length; i++) {
+      if (savedRecipes[i].id === dishid) {
+        alert("Recipe is already saved");
+        return;
+      }
+    }
+
+    var description ="";
+
+    var recipeObj = {
+      id: dishid,
+      dishname: dishname,
+      image: imagelink,
+      calories: calories,
+      cusinetype: cusinetype,
+      mealtype: mealtype,
+      description: description,
+    };
+
+    //Save to Local Storage
+    savedRecipes.push(recipeObj);
+    localStorage.setItem("savedRecipes", JSON.stringify(savedRecipes));
+    alert("Recipe saved successfully");
+  }
+
 });
