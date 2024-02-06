@@ -34,7 +34,6 @@ body {
 .cards-wrapper {
   display: flex;
   margin-bottom: 50px;
-  
 }
 
 .container {
@@ -76,8 +75,10 @@ body {
 
 .container .card .imgBox img {
   height: 200px;
+  width: 200px;
   border-radius: 4px;
   object-fit: cover;
+  
 }
 
 .container .card .content {
