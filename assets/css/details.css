@@ -1,14 +1,27 @@
 body {
-    background-color: azure;
+    background-color: rgb(245, 249, 249);
 }
 
 .insertDetails {
+    margin: 4px;
     border: 1px solid black;
-    background-color: rgb(195, 216, 216);
+    background-color: rgb(232, 229, 209);
+    padding: 8px;
 }
 
-.subtitle {
+.description {
     color: rgb(23, 23, 103);
-    padding: 2px;
+    padding: 6px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+#image-suport {
+    padding: 5px;
+}
+
+.name {
+    color: rgb(24, 38, 61);
+    padding: 6px;
+    font-style: oblique;
     font-family: Georgia, 'Times New Roman', Times, serif;
 }
