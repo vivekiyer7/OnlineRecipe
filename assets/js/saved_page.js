@@ -1,14 +1,26 @@
 $(document).ready(function () {
-    const API_Key = "58c03c765fc3561060028e9cde96da90";
-    const BASE_URL = "https://api.openweathermap.org/data/2.5/weather";
-    const FORECAST_BASE_URL = "https://api.openweathermap.org/data/2.5/forecast";
-    
+    //listen for save button clicks$(document).ready(function () {
+    //listen for save button clicks
+$('.saveBtn').on('click', function () {
+    var value = $(this).siblings('.description').val();
+    var time = $(this).parent().attr('id');
+})
+});
+    //saves in the localStorage (Ref: As shown in class)
+    document.addEventListener('DOMContentLoaded', function() {
+        var savedData = localStorage.getItem('savedData');
+        if (savedData) {
+            document.getElementById('saved-data').textContent = savedData;
+        } else {
+            document.getElementById('saved-data').textContent = 'No data saved.';
+        }
+    });
 
 
-//     $('.saveBtn').on('click', function () {
-//         var name = $(this).siblings('.description').val();
-//         var image = $(this).siblings().attr('id');
-//         var description = $(this).parent().attr('id');
-//     })
-// });
 
+// document.addEventListener('DOMContentLoaded', function() {
+//     var savedData = localStorage.getItem('savedData');
+//     if (savedData) {
+//         document.getElementById('saved-data').textContent = savedData;
+//     } else {
+//         document.getElementById('saved-data').textContent = 'No data saved.';

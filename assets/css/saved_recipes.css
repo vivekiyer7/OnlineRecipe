@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 body {
     background-color: #f4f4f4;
     font-family: "Open Sans", Arial, Helvetica, sans-serif;
@@ -31,10 +32,34 @@ body {
 }
 
 .navbar-nav .nav-link:hover {
+=======
+/* navbar */
+.navbar-brand {
+    font-size: 2.5rem;
+  }
+  
+  .navbar-brand img {
+    margin-right: 5px;
+    height: 3.5rem;
+  }
+  
+  .navbar-brand {
+    display: flex;
+    align-items: center;
+  }
+  
+  .navbar-nav .nav-link {
+    font-size: 1.5rem;
+    transition: 0.2s; 
+  }
+  
+  .navbar-nav .nav-link:hover {
+>>>>>>> 0d956c3da8214bd7a9404026317e0eb0f5f60cbb
     background-color: coral;
     color: black;
     font-style: italic;
     border-bottom: 0.3rem solid #1b1b1c;
+<<<<<<< HEAD
 }
 /* Navbar section styles End */
 
@@ -67,3 +92,102 @@ body {
 /* Hero and AboutMe section styles End */
 
 
+=======
+  }
+  
+  body {
+    justify-content: center;
+    align-items: center;
+    background: #ffffff;
+
+  }
+
+  .jumbotron {
+    background-image: url("../images/mainpage_hero.png");
+    background-size: cover;
+    margin-top: 80px;
+    height: 500px;
+  }
+
+  .display-4 {
+    color: white;
+    position: absolute;
+    left: 20px;
+    top: 480px;
+    font-family: 'Lato', 'Helvetica', 'Arial', 'sans-serif';
+    letter-spacing: 5px;
+    font-weight: 600;
+    background-color: black;
+    padding: 5px 10px
+  }
+
+.meal {
+    display: block;
+    margin: 15px;
+    padding: 15px;
+    border: 1px solid #222222;
+    border-radius: 8px;
+    background-color: #ffffff;
+    max-width: 150px;
+    min-width: 150px;
+  }
+
+.meal:focus-visible {
+  box-shadow: #222222 0 0 0 2px, rgba(255, 255, 255, 0.8) 0 0 0 4px;
+  transition: box-shadow .2s;
+}
+
+.meal:active {
+  background-color: #F7F7F7;
+  border-color: #000000;
+  transform: scale(.96);
+}
+
+.meal:disabled {
+  border-color: #DDDDDD;
+  color: #DDDDDD;
+  cursor: not-allowed;
+  opacity: 1;
+}
+
+textarea {
+    background: rgb(242, 216, 171);
+    width: 400px;
+    resize: none;
+    color: #000000;
+    border: 1px solid black;
+    padding: 10px;
+    margin: 20px;
+    height: 80px;
+
+  }
+
+  .saved {
+    display: flex;
+  }
+
+  .saveBtn {
+    height: 80px;
+    width: 70px;
+    margin-top: 20px;
+    margin-left: -20px;
+    border-left: none;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border: none;
+    background-color: #acbeb0;
+  }
+
+
+  .page-wrapper {
+    display: flex; 
+  } 
+ 
+  .meal-photo {
+    border: 1px solid black;
+    height: 350px;
+    width: 350px;
+    margin-left: 200px;
+    margin-top: 80px;
+  }
+>>>>>>> 0d956c3da8214bd7a9404026317e0eb0f5f60cbb

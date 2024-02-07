@@ -1,0 +1,138 @@
+/* navbar */
+ .navbar-brand {
+  font-size: 2.5rem;
+}
+
+.navbar-brand img {
+  margin-right: 5px;
+  height: 3.5rem;
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-nav .nav-link {
+  font-size: 1.5rem;
+  transition: 0.2s; 
+}
+
+.navbar-nav .nav-link:hover {
+  background-color: coral;
+  color: black;
+  font-style: italic;
+  border-bottom: 0.3rem solid #1b1b1c;
+}
+
+body {
+  justify-content: center;
+  align-items: center;
+  background: #ffffff;
+  position: relative;
+  min-width: 1000px;
+  min-height: 130vh;
+}
+/* expanding cards */
+.cards-wrapper {
+  display: flex;
+  margin-bottom: 50px;
+}
+
+.container {
+  position: relative;
+  width: 400px;
+  height: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 30px;
+}
+
+.container .card {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  background: rgb(251, 251, 251);
+  padding: 15px 15px 15px 15px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+  transition: 0.3s ease-in-out;
+}
+
+.container .card:hover {
+  height: 600px;
+}
+
+.container .card .imgBox {
+  justify-content: center;
+  margin: 10px 10px 10px 35px;
+  width: 200px;
+  height: 200px;
+  top: 5px;
+  margin-bottom: 40px;
+
+}
+
+.container .card .imgBox img {
+  height: 200px;
+  width: 200px;
+  border-radius: 4px;
+  object-fit: cover;
+  
+}
+
+.container .card .content {
+  position: relative;
+  margin-top: -140px;
+  padding: 10px 10px;
+  text-align: center;
+  justify-content: center;
+  color: rgb(21, 21, 21);
+  visibility: hidden;
+  opacity: 0;
+  transition: 0.3s ease-in-out;
+}
+
+.container .card:hover .content {
+  visibility: visible;
+  opacity: 1;
+  margin-top: 30px;
+  transition-delay: 0.3s;
+}
+
+.icon {
+font-size: 30px;
+}
+
+h1 {
+  text-align: center;
+  padding-top: 150px;
+}
+
+h4 {
+  text-align: center;
+  color:rgb(41, 41, 46)
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+}
+
+@media only screen and (max-width: 1200px) {
+  .cards-wrapper {
+    flex-wrap: wrap;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .cards-wrapper {
+    display: block;
+  }
+}
+
+
+
