@@ -2,6 +2,13 @@ body {
     background-color: rgb(245, 249, 249);
 }
 
+.firs_continer {
+    background-color: antiquewhite;
+    padding: 3px;
+    margin: 1px;
+    border: 1px solid black;
+}
+
 .hero {
     position: relative;
     height: 400px;
