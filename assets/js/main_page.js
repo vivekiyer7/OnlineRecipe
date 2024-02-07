@@ -69,8 +69,17 @@ document.addEventListener("DOMContentLoaded", function () {
           //round off the calories 2 decimal places
           calories = Math.round(calories * 100) / 100;
           cusinetype = data.recipe.cuisineType;
+          mealtype = data.recipe.mealType;
+          //Save the randomrecipeid to each image tag so that we can use it to get the recipe details
+
           var recipeEL = $("#recipe" + (i + 1));
-          recipeEL.append("<img src='" + imagelink + "' alt='recipe'>");
+          var imgElement = $("<img>").attr({
+            src: imagelink,
+            alt: "recipe",
+            "data-recipe-id": randomrecipeid[i],
+            id: "todayrecipeimage",
+          });
+          recipeEL.empty().append(imgElement);
           recipeEL.append("<h4>" + dishname + "</h4>");
           recipeEL.append("<h5>" + "CusineType: " + cusinetype + "</h5>");
           recipeEL.append("<h5>" + "Calories: " + calories + "</h5>");
@@ -78,9 +87,35 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  //Add the event listner to Try Something New button
-  //This will call the new API to get the new recipe.
-  //Example of API is
+  //When click on the recipe image , it will take to the details page
+  document.addEventListener("click", function (e) {
+    if (e.target.id === "todayrecipeimage") {
+      fromapi = "edmamapi";
+      handleTodayRecipeClick(e, fromapi);
+    }
+  });
+
+  function handleTodayRecipeClick(e, from_api) {
+    var storedRecipeId = $(e.target).data("recipe-id");
+    var searchapifrom = from_api;
+
+    if (storedRecipeId && searchapifrom) {
+      var detailsObj = {
+        id: storedRecipeId,
+        fromapi: searchapifrom,
+      };
+
+      localStorage.setItem("Check_Details", JSON.stringify(detailsObj));
+      setTimeout(function () {
+        window.location.href = "./assets/html/details.html";
+      }, 2000);
+    } else {
+      console.error("Recipe ID or Search API is missing.");
+    }
+  }
+
+  //Search Section
+
   function getramdomrecipe(recipeType) {
     var randomfooddbid = [];
 
@@ -112,9 +147,36 @@ document.addEventListener("DOMContentLoaded", function () {
         recipeEL.empty();
         recipeEL.append("<h4>" + dishname + "</h4>");
         recipeEL.append("<h5>" + "Cusine Area/Origin: " + area + "</h5>");
-        var recipeEL = $("#randonrecipeimage");
-        recipeEL.empty();
-        recipeEL.append("<img src='" + imagelink + "' alt='recipe'>");
+        var imgElement = $("<img>").attr({
+          src: imagelink,
+          alt: "recipe",
+          "data-recipe-id": randomfoodid,
+          id: "randonrecipeimage",
+        });
+        $("#randonrecipeimagecnt").empty().append(imgElement);
+
+        //Add the data to LocalStorage TempKey.
+        var description = "";
+        var calories = 0;
+        var cusinetype = "";
+        var mealtype = "";
+
+        var recipeObj = {
+          id: randomfoodid,
+          dishname: dishname,
+          image: imagelink,
+          calories: calories,
+          cusinetype: cusinetype,
+          mealtype: mealtype,
+          description: description,
+        };
+
+        //Clear and Save to Local Storage
+        var savedRecipes =
+          JSON.parse(localStorage.getItem("temprandomRecipes")) || [];
+        savedRecipes = [];
+        savedRecipes.push(recipeObj);
+        localStorage.setItem("temprandomRecipes", JSON.stringify(savedRecipes));
       });
   }
 
@@ -129,26 +191,55 @@ document.addEventListener("DOMContentLoaded", function () {
   //Add the event listner to the saved recipe button saverandomrecipebtn
   var saverdmbtn = $("#saverandomrecipebtn");
   saverdmbtn.click(function () {
-    var description ="";
+    var savedRecipes = JSON.parse(localStorage.getItem("savedRecipes")) || [];
+    var temprandomRecipes =
+      JSON.parse(localStorage.getItem("temprandomRecipes")) || [];
+    //Check if the recipe is already saved then dont save it again
+    for (let i = 0; i < savedRecipes.length; i++) {
+      if (savedRecipes[i].id === temprandomRecipes[0].id) {
+        alert("Recipe is already saved");
+        return;
+      }
+    }
 
-    var recipeObj = {
-      id: dishid,
-      dishname: dishname,
-      image: imagelink,
-      calories: calories,
-      cusinetype: cusinetype,
-      mealtype: mealtype,
-      description:description,
-    };
-
-    //Save to Local Storage
-    savedRecipes.push(recipeObj);
+    //Store only 8 recipes in the local storage
+    if (savedRecipes.length >= 8) {
+      savedRecipes.shift();
+    }
+    
+    for (let i = 0; i < temprandomRecipes.length; i++) {
+      savedRecipes.push(temprandomRecipes[i]);
+    }
     localStorage.setItem("savedRecipes", JSON.stringify(savedRecipes));
     alert("Recipe saved successfully");
-
   });
 
-  //Search Section
+  //When click on the recipe image , it will take to the details page
+  document.addEventListener("click", function (e) {
+    if (e.target.id === "randonrecipeimage") {
+      fromapi = "mealdbapi";
+      handleRandomRecipeClick(e, fromapi);
+    }
+  });
+
+  function handleRandomRecipeClick(e, from_api) {
+    var storedRecipeId = $("#randonrecipeimage").data("recipe-id");
+    var searchapifrom = from_api;
+
+    if (storedRecipeId && searchapifrom) {
+      var detailsObj = {
+        id: storedRecipeId,
+        fromapi: searchapifrom,
+      };
+
+      localStorage.setItem("Check_Details", JSON.stringify(detailsObj));
+      setTimeout(function () {
+        window.location.href = "./assets/html/details.html";
+      }, 2000);
+    } else {
+      console.error("Recipe ID or Search API is missing.");
+    }
+  }
 
   //Auto complete for the search recipe, cuisine and meal type
   var recipe = [];
@@ -374,14 +465,15 @@ document.addEventListener("DOMContentLoaded", function () {
             // Clear the table body before adding new content
             recipeTableBody.innerHTML = "";
             // Display the recipe details in the main page Table
+            //Add dishID to Img tag
+            
             recipeTableBody.innerHTML += `
                 <tr>
-                    <td>${dishid}</td>
                     <td>${dishname}</td>
                     <td>${cusinetype}</td>
                     <td>${mealtype}</td>
                     <td>${calories}</td>
-                    <td><img src="${imagelink}" alt="recipe"></td>
+                    <td><img id="searchdisplayimage" data-dish-id="${dishid}" src="${imagelink}" alt="recipe"></td>
                     <td><button class="btn Detailbtn btn-primary">Details</button></td>
                     <td><button class="btn Savebtn btn-primary">Save</button></td>
                 </tr>
@@ -401,12 +493,11 @@ document.addEventListener("DOMContentLoaded", function () {
               // Modify this to append content to the correct element
               recipeTableBody.innerHTML += `
               <tr>
-              <td>${dishid}</td>
               <td>${dishname}</td>
               <td>${cusinetype}</td>
               <td>${mealtype}</td>
               <td>${calories}</td>
-              <td><img src="${imagelink}" alt="recipe"></td>
+              <td><img id="searchdisplayimage" data-dish-id="${dishid}" src="${imagelink}" alt="recipe"></td>
               <td><button class="btn Detailbtn btn-primary">Details</button></td>
               <td><button class="btn Savebtn btn-primary">Save</button></td>
           </tr>`;
@@ -424,28 +515,24 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   function handleDetailButtonClick(e, from_api) {
-
-    var dishid = e.target
-    .closest("tr")
-    .querySelector("td:first-child").textContent;
-
-    var recipeid = dishid;
+    var storedDishId = $(e.target).closest('tr').find('img').data("dish-id");
     var searchapifrom = from_api;
 
-    if (recipeid && searchapifrom) {
-      var detailsObj = {
-        id: recipeid,
-        fromapi: searchapifrom,
-      };
+    if (storedDishId && searchapifrom) {
+        var detailsObj = {
+            id: storedDishId,
+            fromapi: searchapifrom,
+        };
 
-      localStorage.setItem("Check_Details", JSON.stringify(detailsObj));
-      setTimeout(function () {
-        window.location.href = "./assets/html/details.html";
-      }, 2000);
+        localStorage.setItem("Check_Details", JSON.stringify(detailsObj));
+        setTimeout(function () {
+            window.location.href = "./assets/html/details.html";
+        }, 2000);
     } else {
-      console.error("Recipe ID or Search API is missing.");
+        console.error("Recipe ID or Search API is missing.");
     }
-  }
+}
+
 
   document.addEventListener("click", function (e) {
     if (e.target.classList.contains("Savebtn")) {
@@ -455,25 +542,13 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   function handleSaveButtonClick(e) {
-    var dishname = e.target
-      .closest("tr")
-      .querySelector("td:nth-child(2)").textContent;
-    var dishid = e.target
-      .closest("tr")
-      .querySelector("td:first-child").textContent;
-    var imagelink = e.target
-      .closest("tr")
-      .querySelector("td:nth-child(6) img").src;
-    var calories = e.target
-      .closest("tr")
-      .querySelector("td:nth-child(5)").textContent;
-    var cusinetype = e.target
-      .closest("tr")
-      .querySelector("td:nth-child(3)").textContent;
-    var mealtype = e.target
-      .closest("tr")
-      .querySelector("td:nth-child(4)").textContent;
-
+    var dishname = $(e.target).closest("tr").find("td").eq(0).text();
+    var cusinetype = $(e.target).closest("tr").find("td").eq(1).text();
+    var mealtype = $(e.target).closest("tr").find("td").eq(2).text();
+    var calories = $(e.target).closest("tr").find("td").eq(3).text();
+    var imagelink = $(e.target).closest("tr").find("img").attr("src");
+    var dishid = $(e.target).closest("tr").find("img").data("dish-id");
+    
     //If the recipe is already saved then dont save it again
     var savedRecipes = JSON.parse(localStorage.getItem("savedRecipes")) || [];
     for (let i = 0; i < savedRecipes.length; i++) {
@@ -483,7 +558,12 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }
 
-    var description ="";
+    //Store only 8 recipes in the local storage
+    if (savedRecipes.length >= 8) {
+      savedRecipes.shift();
+    }
+
+    var description = "";
 
     var recipeObj = {
       id: dishid,
@@ -500,5 +580,4 @@ document.addEventListener("DOMContentLoaded", function () {
     localStorage.setItem("savedRecipes", JSON.stringify(savedRecipes));
     alert("Recipe saved successfully");
   }
-
 });
