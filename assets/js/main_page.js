@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function () {
   var todaymenutimeEL = $("#todaymenutime");
   todaymenutimeEL.append("<h3>" + recipeType + "</h3>");
 
-  //loadtodayrecipe(recipeType);
+  loadtodayrecipe(recipeType);
 
   function loadtodayrecipe(recipeType) {
     var recipeid = [];
@@ -446,7 +446,6 @@ document.addEventListener("DOMContentLoaded", function () {
       alert("Please enter the search criteria");
       return;
     } else {
-      // Assuming recipeTableBody is the ID of the table body element
       const recipeTableBody = document.getElementById("recipeTableBody");
       searchDisplaySection.show();
       fetch(searchapi)

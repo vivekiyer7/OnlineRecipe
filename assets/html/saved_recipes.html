@@ -1,117 +1,185 @@
 <!DOCTYPE html>
 <html lang="en-gb">
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
-        integrity="sha512-REl7NxnB4z83s8/6wzpo/YB4Sr8kZWSzIcDpxSvJX/RvVT4R82ivtuOuq9WK5jvZxRX0ldmeGepXNtNGtVJ3CQ=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="../css/saved_recipes.css" />
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://getbootstrap.com/docs/5.3/assets/css/docs.css"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="../css/main_page.css" />
+    <link rel="stylesheet" href="../css/details.css" />
     <!-- Title -->
-    <title>OnlineRecipe</title>
-</head>
+    <title>RecipeHub</title>
+  </head>
 
-<body>
   <body>
     <!-- Navbar Section Start () -->
     <!-- Navbar for Large Screens () -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="../../main.html">
-                <img src="../images/RecipeHub_logo1.png" alt="RecipeHubLogo" class="d-inline-block align-top" />
-                <span>RecipeHub</span>
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="../../main.html">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="./saved_recipes.html">Saved Recipes</a></li>
-                    <li class="nav-item"><a class="nav-link" href="./aboutme.html">About Us</a></li>
-                </ul>
-            </div>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="../../main.html">
+          <img
+            src="../images/RecipeHub_logo1.png"
+            alt="RecipeHubLogo"
+            class="d-inline-block align-top recipehublogo"
+          />
+          <span>RecipeHub</span>
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div
+          class="collapse navbar-collapse justify-content-end"
+          id="navbarNav"
+        >
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a
+                class="nav-link active"
+                aria-current="page"
+                href="../../main.html"
+                >Home</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../html/saved_recipes.html"
+                >Saved Recipes</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../html/aboutme.html">About Us</a>
+            </li>
+          </ul>
         </div>
+      </div>
     </nav>
     <!-- Offcanvas Structure for Screen Sizes Less Than 1600px -->
-    <nav class="navbar navbar-dark bg-dark fixed-top navbar-expand-xl d-xxl-none">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="../../main.html">
-                <img src="../images/RecipeHub_logo1.png" alt="RecipeHubLogo" class="d-inline-block align-top" />
-                <span>RecipeHub</span>
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
-                data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar"
-                aria-labelledby="offcanvasDarkNavbarLabel">
-                <div class="offcanvas-header">
-                    <h3 class="offcanvas-title" id="offcanvasDarkNavbarLabel">RecipeHub</h3>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
-                        aria-label="Close"></button>
-                </div>
-                <div class="offcanvas-body">
-                    <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="../../main.html">Home</a>
-                        </li>
-                        <li class="nav-item"><a class="nav-link" href="./saved_recipes.html">Saved Recipes</a></li>
-                        <li class="nav-item"><a class="nav-link" href="./aboutme.html">About Us</a></li>
-                    </ul>
-                </div>
-            </div>
+    <nav
+      class="navbar navbar-dark bg-dark fixed-top navbar-expand-xl d-xxl-none"
+    >
+      <div class="container-fluid">
+        <a class="navbar-brand" href="../../main.html">
+          <img
+            src="../images/RecipeHub_logo1.png"
+            alt="RecipeHubLogo"
+            class="d-inline-block align-top"
+          />
+          <span>RecipeHub</span>
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvasDarkNavbar"
+          aria-controls="offcanvasDarkNavbar"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div
+          class="offcanvas offcanvas-end text-bg-dark"
+          tabindex="-1"
+          id="offcanvasDarkNavbar"
+          aria-labelledby="offcanvasDarkNavbarLabel"
+        >
+          <div class="offcanvas-header">
+            <h3 class="offcanvas-title" id="offcanvasDarkNavbarLabel">
+              RecipeHub
+            </h3>
+            <button
+              type="button"
+              class="btn-close btn-close-white"
+              data-bs-dismiss="offcanvas"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="offcanvas-body">
+            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+              <li class="nav-item">
+                <a
+                  class="nav-link active"
+                  aria-current="page"
+                  href="../../main.html"
+                  >Home</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="../html/saved_recipes.html"
+                  >Saved Recipes</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="../html/aboutme.html">About Us</a>
+              </li>
+            </ul>
+          </div>
         </div>
+      </div>
     </nav>
     <!-- Navbar Section End () -->
 
-    <div class="jumbotron">
-        <h1 class="display-4">Saved Recipes</h1>
-        <hr class="my-4">    
+    <!-- Hero Section Start -->
+    <section class="hero relative">
+      <div class="hero-image"></div>
+    </section>
+    <!-- Hero Section End -->
+
+    <!-- Saved Recipes Section Start -->
+    <div class="container-fluid saveddisplayclass" style="max-width: 2500px">
+      <div class="row">
+        <aside class="col-lg-12 pb-3">
+          <div
+            class="container saveddisplaysection justify-content-center mt-5"
+            id="saveddisplaysection"
+          >
+            <h2 class="subtitle" style="font-style: italic; text-align: center;">Saved Recipes</h2>
+            <div class="table-responsive">
+              <table
+                class="table table-striped table-bordered savedrecipetable"
+                id="savedrecipetable"
+              >
+                <thead>
+                  <tr>
+                    <th>Image</th>
+                    <th>RecipeName</th>
+                    <th>Description</th>
+                    <th>Comment</th>
+                    <th>Save</th>
+                    <th>Delete</th>
+                  </tr>
+                </thead>
+                <tbody id="savedtablebody"></tbody>
+              </table>
+            </div>
+          </div>
+        </aside>
+      </div>
     </div>
-        
-    <!-- Saved recipes will get dumped here  -->
-    <div class="page-wrapper">
+    <!-- Saved Recipes Section End -->
 
-    <!--Buttons with Saved Recipes and comments-->    
-    <div id="buttons-view">
-    <div class="saved"><button class="meal"></button> 
-    <textarea class="comments"></textarea><button class="saveBtn"><i class="fa-solid fa-bookmark"></i></button></div>
+    <hr class="my-4" />
 
-    <div class="saved"><button class="meal"></button><textarea class="comments"></textarea><button class="saveBtn"><i class="fa-solid fa-bookmark"></i></button></div>
-
-    <div class="saved"><button class="meal"></button><textarea class="comments"></textarea><button class="saveBtn"><i class="fa-solid fa-bookmark"></i></button></div>
-
-    <div class="saved"><button class="meal"></button><textarea class="comments"></textarea><button class="saveBtn"><i class="fa-solid fa-bookmark"></i></button></div>
-   </div>
-
-   <!--Photo-->
-   <aside class="photo-section">
-    <img class="meal-photo">
-   </aside>
-
-   </div>
-    
     <!-- Bootstrap JS and Popper.js -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
-        integrity="sha256-kJ3ukihjo/53ZLq1e5se+gl5y20AdJtz+eqF5v3O6sY=" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"
-        integrity="sha384-Sf3gnZ9KF1bxzF7Xt4Rj/QbrAg9JME8EG4/aRGGdbHEI95UeZHHa7uyhrtZu9bwn"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8sh+Wy7LdS/RhH/RQNGUqq1i6Ubd5DP9I" crossorigin="anonymous"></script>
-    <scrip src="/savedRecipes/script.js"></scrip>
-</body>
-
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.10.7/dayjs.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <script src="../js/saved_page.js"></script>
+  </body>
 </html>
