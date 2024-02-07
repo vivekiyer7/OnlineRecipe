@@ -156,13 +156,14 @@ document.addEventListener("DOMContentLoaded", function () {
         $("#randonrecipeimagecnt").empty().append(imgElement);
 
         //Add the data to LocalStorage TempKey.
+        var extractedId = Array.isArray(randomfoodid) ? randomfoodid[0] : randomfoodid;
         var description = "";
         var calories = 0;
         var cusinetype = "";
         var mealtype = "";
 
         var recipeObj = {
-          id: randomfoodid,
+          id: extractedId,
           dishname: dishname,
           image: imagelink,
           calories: calories,
