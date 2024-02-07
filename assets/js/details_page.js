@@ -38,7 +38,7 @@ fetch(apiUrl)
                     <img src="${imageUrl}" alt="Recipe Image">
                     <h5 class="name">${label}</h5>
                     <p><strong>Source Website:</strong> ${source}</p>
-                    <p><strong>URL:</strong><a href="${url}">Click here</a></p>
+                    <p><strong>URL:</strong><a href="${url}"> To visit the original site click here</a></p>
                     `);          
         console.log(data);
     })
