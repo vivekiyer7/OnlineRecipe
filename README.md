@@ -20,7 +20,7 @@ Welcome to RecipeHub Web Application. One Stop Application for quickly searching
 - **Recipe Search**
 - **Detailed Recipe Information**
 - **Save and Edit Favorite Recipes**
-- **Integration with External API**
+- **Integration of External API**
 
 ## Screenshots
 
