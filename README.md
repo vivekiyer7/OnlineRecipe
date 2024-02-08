@@ -17,22 +17,10 @@ Welcome to RecipeHub Web Application. One Stop Application for quickly searching
 ## Features
 
 - **Today's special dishes**
-Suggests Speacial Dishes based on MealType.
-
 - **Recipe Search**
-Search for recipes based on various criteria such as recipe name, cuisine, and meal type.
-Random recipe generation for users looking for something new.:
-
 - **Detailed Recipe Information**
-Display detailed information about a selected recipe, including image, name, cuisine, and calories.
-
 - **Save and Favorite Recipes**
-Allow users to save their favorite recipes.
-Access saved recipes for quick reference.
-
 - **Integration with External API**
-Utilize external APIs (e.g., Edamam API) for retrieving recipe data.
-Implement secure and efficient communication with external services.
 
 ## Screenshots
 
@@ -48,7 +36,7 @@ Implement secure and efficient communication with external services.
 1. Site is live at <https://vivekiyer7.github.io/RecipeHub/>
 2. You can also access the site from following QR Code:
 
-![Screenshot1](/assets/images/Recipehub_QR_Code.png)
+![Screenshot1](/assets/images/Recipehub_QRCode.png)
 
 To run the application locally, follow these steps:
 
