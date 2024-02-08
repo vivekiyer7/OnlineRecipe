@@ -12,7 +12,7 @@ This is a developing user-friendly online portals for quickly searching recipes.
 
 ## Links
 * [Deployed website] (#)
-* [Repository] (#)
+* [Repository] (https://github.com/vivekiyer7/OnlineRecipe)
 
 ## Usage
 When selecting the links from the top menu, you will be directed to the respective usage pages.
