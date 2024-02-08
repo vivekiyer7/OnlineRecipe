@@ -79,4 +79,4 @@ If you'd like to contribute to this project, please follow these steps:
 
 ## License
 
-This project is licensed under the [GNU General Public License v3.0](LICENSE).
+This repo is published under the [GNU General Public License v3.0](LICENSE) meaning you are free to use it, modify it, share it, and share your modifications as long as you grant the same licence to others.
