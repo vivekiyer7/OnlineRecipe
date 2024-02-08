@@ -5,8 +5,8 @@ body {
 .firs_continer {
     background-color: antiquewhite;
     padding: 3px;
-    margin: 1px;
     border: 1px solid black;
+    margin-top: 10px;
 }
 
 .hero {
