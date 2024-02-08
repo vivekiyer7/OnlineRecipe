@@ -126,11 +126,26 @@ footer {
   .cards-wrapper {
     flex-wrap: wrap;
   }
+  body {
+    min-height: 200vh;
+  }
+  .container {
+    margin-bottom: 60px;
+  }
 }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 930px) {
   .cards-wrapper {
     display: block;
+  }
+
+  body {
+    min-height: 330vh;
+    max-width: 800px;
+  }
+
+  .container {
+    margin-bottom: 60px;
   }
 }
 
