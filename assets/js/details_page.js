@@ -1,14 +1,15 @@
 document.addEventListener("DOMContentLoaded", function () {
 
-    var app_id = "cfba1ecd";
-    var app_key = "636950cdd1daaef47a38397170ebda0a";
+    // Get the data from local storage
     const data = JSON.parse(window.localStorage.getItem("Check_Details"));
     const apioption = data.fromapi;
-    const recipeId = data.id;
-    const recepieId2 = data.id;
-    const apiUrl = `https://api.edamam.com/api/recipes/v2/${recipeId}?type=public&app_id=${app_id}&app_key=${app_key}`;
-    const apiUrl2 = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${recepieId2}`;
-    fetch(apiUrl)
+    const recipeid = data.id;    
+
+    if (apioption == "edmamapi") {
+        var app_id = "cfba1ecd";
+        var app_key = "636950cdd1daaef47a38397170ebda0a";
+        const apiUrl = `https://api.edamam.com/api/recipes/v2/${recipeid}?type=public&app_id=${app_id}&app_key=${app_key}`;
+        fetch(apiUrl)
         .then(response => response.json())
         .then(data => {
             var imageUrl = data.recipe.image;
@@ -47,7 +48,10 @@ document.addEventListener("DOMContentLoaded", function () {
         .catch(error => {
             console.error("Error fetching data:", error);
         });
-    fetch(apiUrl2)
+    }
+    else if (apioption == "mealdbapi") {
+        const apiUrl2 = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${recipeid}`;
+        fetch(apiUrl2)
         .then(response => response.json())
         .then(data => {
             var strArea = data.meals[0].strArea;
@@ -75,5 +79,5 @@ document.addEventListener("DOMContentLoaded", function () {
         .catch(error => {
             console.error("Error fetching data:", error);
         });
-
+    }
 });
