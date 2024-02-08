@@ -36,7 +36,7 @@ Welcome to RecipeHub Web Application. One Stop Application for quickly searching
 1. Site is live at <https://vivekiyer7.github.io/RecipeHub/>
 2. You can also access the site from following QR Code:
 
-![Screenshot1](/assets/images/Recipehub_QRCode.png)
+![Screenshot1](/assets/images/Recipehub_QR_Code.png)
 
 To run the application locally, follow these steps:
 
