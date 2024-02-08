@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const apioption = data.fromapi;
     const recipeid = data.id;    
 
-    if (apioption == "edamam") {
+    if (apioption == "edmamapi") {
         var app_id = "cfba1ecd";
         var app_key = "636950cdd1daaef47a38397170ebda0a";
         const apiUrl = `https://api.edamam.com/api/recipes/v2/${recipeid}?type=public&app_id=${app_id}&app_key=${app_key}`;
