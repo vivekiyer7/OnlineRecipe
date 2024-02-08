@@ -16,28 +16,23 @@ Welcome to RecipeHub Web Application. One Stop Application for quickly searching
 
 ## Features
 
-- **:Today's special dishes**
+- **Today's special dishes**
+Suggests Speacial Dishes based on MealType.
 
-1. Suggests Speacial Dishes based on MealType.
+- **Recipe Search**
+Search for recipes based on various criteria such as recipe name, cuisine, and meal type.
+Random recipe generation for users looking for something new.:
 
-- **Recipe Search**:
+- **Detailed Recipe Information**
+Display detailed information about a selected recipe, including image, name, cuisine, and calories.
 
-1. Search for recipes based on various criteria such as recipe name, cuisine, and meal type.
-2. Random recipe generation for users looking for something new.:
+- **Save and Favorite Recipes**
+Allow users to save their favorite recipes.
+Access saved recipes for quick reference.
 
-- **:Detailed Recipe Information**
-
-1. Display detailed information about a selected recipe, including image, name, cuisine, and calories.
-
-- **:Save and Favorite Recipes**
-
-1. Allow users to save their favorite recipes.
-2. Access saved recipes for quick reference.
-
-- **:Integration with External API**
-
-1. Utilize external APIs (e.g., Edamam API) for retrieving recipe data.
-2. Implement secure and efficient communication with external services.
+- **Integration with External API**
+Utilize external APIs (e.g., Edamam API) for retrieving recipe data.
+Implement secure and efficient communication with external services.
 
 ## Screenshots
 
@@ -46,7 +41,7 @@ Welcome to RecipeHub Web Application. One Stop Application for quickly searching
 ![Screenshot3](/assets/images/finished_page_mainpage3.png)
 ![Screenshot4](/assets/images/finished_page_detail_page.png)
 ![Screenshot5](/assets/images/finished_page_saved_recipe.png)
-![Screenshot6](/assets/images/finished_highscores_page.png)
+![Screenshot6](/assets/images/finished_page_about_us.png)
 
 ## Deployment
 
